@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    name: druid
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 10
+      min-idle: 10
+      maxActive: 200
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      connectionErrorRetryAttempts: 3
+      breakAfterAcquireFailure: true
+      timeBetweenConnectErrorMillis: 300000
+      asyncInit: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+      transaction-query-timeout: 6000
+      filters: stat,wall,log4j2
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  typeAliasesPackage: com.lxg.springboot.dao.mybatisplus
+  global-config:
+    id-type: 0
+    db-column-underline: true
+    refresh-mapper: true
+  #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  configuration:
+    log-impl: yzm.example.vue.admin.service.base.log.MyMybatisLog
